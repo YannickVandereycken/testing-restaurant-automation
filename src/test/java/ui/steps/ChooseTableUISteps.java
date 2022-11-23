@@ -76,4 +76,6 @@ public class ChooseTableUISteps {
     public void the_room_is_not_available_anymore_for_reservation(String room) {
         assertFalse(bookTablePage.selectRoomDropdownContainsOption(room));
     }
+
+
 }
