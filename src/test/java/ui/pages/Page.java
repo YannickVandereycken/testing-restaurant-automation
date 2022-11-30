@@ -11,7 +11,9 @@ public abstract class Page {
 
     public static void initDriver () {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        if(driver == null) {
+            driver = new ChromeDriver();
+        }
     }
 
     public static void quitDriver() {

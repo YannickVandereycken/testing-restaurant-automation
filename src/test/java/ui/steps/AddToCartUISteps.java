@@ -18,7 +18,7 @@ public class AddToCartUISteps {
 
     @Before
     public void setUp() {
-//        Page.initDriver();
+        Page.initDriver();
         orderFoodPage = PageFactory.initElements(Page.getDriver(), OrderFoodPage.class);
     }
 
