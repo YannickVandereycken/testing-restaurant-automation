@@ -39,7 +39,7 @@ Feature: Confirm reservation
     Scenario: A reservation can be made when the last name is provided
       Given Jef has provided “Peeters” as his last name
       When Jef makes a reservation
-      Then a message should be given that the first name needs to be provided before making a reservation
+      Then the reservation should be made
 
     @UI
     Scenario: A message is given when the last name is not provided
