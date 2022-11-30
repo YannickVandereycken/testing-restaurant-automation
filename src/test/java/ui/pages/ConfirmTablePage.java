@@ -59,7 +59,7 @@ public class ConfirmTablePage extends Page {
     private WebElement orderError;
 
     public void open() {
-        getDriver().get(getPath() + "book-a-table");
+        getDriver().get(getPath() + "book-a-table/");
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         findTable();
         continueButton.click();

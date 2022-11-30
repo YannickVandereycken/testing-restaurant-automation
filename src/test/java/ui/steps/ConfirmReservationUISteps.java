@@ -55,4 +55,41 @@ public class ConfirmReservationUISteps {
     public void a_message_should_be_given_that_the_terms_and_condition_need_to_be_accepted_before_making_a_reservation() {
         assertTrue(confirmTablePage.isErrorDisplayed());
     }
+
+    @Given("Jef has provided “Jef” as his first name")
+    public void jef_has_provided_jef_as_his_first_name() {
+        confirmTablePage.open();
+        confirmTablePage.fillInFirstAndLastName("Jef", "Jefferson");
+        confirmTablePage.acceptTerms();
+    }
+
+    @Given("Jef has not provided a first name")
+    public void jef_has_not_provided_a_first_name() {
+        confirmTablePage.open();
+        confirmTablePage.fillInFirstAndLastName("", "Jefferson");
+        confirmTablePage.acceptTerms();
+    }
+    @Then("a message should be given that the first name needs to be provided before making a reservation")
+    public void a_message_should_be_given_that_the_first_name_needs_to_be_provided_before_making_a_reservation() {
+        assertTrue(confirmTablePage.isErrorDisplayed());
+    }
+
+    @Given("Jef has provided “Peeters” as his last name")
+    public void jef_has_provided_peeters_as_his_last_name() {
+        confirmTablePage.open();
+        confirmTablePage.fillInFirstAndLastName("Jef", "Peeters");
+        confirmTablePage.acceptTerms();
+    }
+
+    @Given("Jef has not provided a last name")
+    public void jef_has_not_provided_a_last_name() {
+        confirmTablePage.open();
+        confirmTablePage.fillInFirstAndLastName("Jef", "");
+        confirmTablePage.acceptTerms();
+    }
+    @Then("a message should be given that the last name needs to be provided before making a reservation")
+    public void a_message_should_be_given_that_the_last_name_needs_to_be_provided_before_making_a_reservation() {
+        assertTrue(confirmTablePage.isErrorDisplayed());
+    }
+
 }
