@@ -7,18 +7,31 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.ArrayList;
+import java.util.List;
 
 public class OrderFoodPage extends Page{
 
     @FindAll(@FindBy(className = "vrtkcartquantitysp"))
-    private ArrayList<WebElement> content;
+    private List<WebElement> amount;
+
+    @FindAll(@FindBy(className = "vrtkcartenamesp"))
+    private List<WebElement> content;
+
+    // 4-17 url "?view=takeawayitem&takeaway_item="
+    @FindBy(id = "vrtk-item-addbutton")
+    private WebElement addItemButton;
 
     @FindBy(className = "vrtkcartpricemodule")
     private WebElement totalPrice;
 
     @FindBy(className = "vrtkcartorderbutton")
     private WebElement orderNowButton;
+
+    @FindBy(className = "vrtkcartemptybutton")
+    private WebElement emptyCartButton;
+
+    @FindBy(className = "toast-message-content")
+    private WebElement errorMessage;
 
     public void open() {
         getDriver().get(getPath() + "/order-food-online");
@@ -60,5 +73,42 @@ public class OrderFoodPage extends Page{
             break;
         }
         getDriver().get(getPath()+"order-food-online/"+url);
+    }
+
+    public void addItem(int amount) {
+        for (int i=0;i<amount;i++){
+            addItemButton.click();
+
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        }
+    }
+
+    public List<WebElement> getAmount() {
+        return amount;
+    }
+
+    public boolean contains(String item){
+        for(WebElement w : content){
+            if(w.getText().equals(item))
+                return true;
+        }
+        return false;
+    }
+
+    public void emptyCart(){
+        emptyCartButton.click();
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+    }
+
+    public boolean hasError(){
+        return errorMessage.isDisplayed();
+    }
+
+    public boolean amount(String a){
+        for(WebElement w : amount){
+            if(w.getText().equals(a))
+                return true;
+        }
+        return false;
     }
 }
