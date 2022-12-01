@@ -18,7 +18,7 @@ public class ConfirmReservationUISteps {
 
     @Before
     public void setUp() {
-        Page.initDriver();
+       // Page.initDriver();
         confirmTablePage = PageFactory.initElements(Page.getDriver(), ConfirmTablePage.class);
     }
 

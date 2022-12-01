@@ -26,4 +26,5 @@ public abstract class Page {
     public String getPath() {
         return path;
     }
+
 }

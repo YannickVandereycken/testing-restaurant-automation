@@ -11,7 +11,7 @@ Feature: Choose date & time
     @UI
     Scenario: A reservation can be made for a future date & time
       Given it is now 23/11/2022 15:53
-      When Jef makes a reservation for 23/11/2022 16:00
+      When Jef makes a reservation for 23/12/2022 16:00
       Then Jef should be able to book a reservation
 
   Rule: The chosen time and date of the reservation must be within the opening hours

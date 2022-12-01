@@ -18,7 +18,7 @@ public class ChooseTableUISteps {
 
     @Before
     public void setUp() {
-        Page.initDriver();
+       // Page.initDriver();
         bookTablePage = PageFactory.initElements(Page.getDriver(), BookTablePage.class);
     }
 
