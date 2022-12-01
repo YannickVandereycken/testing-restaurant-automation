@@ -103,7 +103,7 @@ public class ConfirmTablePage extends Page {
         return confirmationText.isDisplayed();
     }
 
-    public boolean isErrorDisplayed(){
+    public boolean isErrorDisplayed() {
         return orderError.isDisplayed();
     }
 

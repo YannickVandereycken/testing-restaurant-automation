@@ -72,5 +72,4 @@ public class ChooseDateAndTimeUISteps {
         bookTablePage.fillInDetails("Jef", "Jefferson");
         bookTablePage.confirmReservation();
     }
-
 }

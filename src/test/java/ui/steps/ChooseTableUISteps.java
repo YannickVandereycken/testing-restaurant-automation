@@ -1,6 +1,5 @@
 package ui.steps;
 
-
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -18,7 +17,7 @@ public class ChooseTableUISteps {
 
     @Before
     public void setUp() {
-       // Page.initDriver();
+        Page.initDriver();
         bookTablePage = PageFactory.initElements(Page.getDriver(), BookTablePage.class);
     }
 
@@ -76,6 +75,4 @@ public class ChooseTableUISteps {
     public void the_room_is_not_available_anymore_for_reservation(String room) {
         assertFalse(bookTablePage.selectRoomDropdownContainsOption(room));
     }
-
-
 }

@@ -15,20 +15,20 @@ public class LoginPage extends Page {
     private String username;
     private String password;
 
-    @FindBy(id="username")
+    @FindBy(id = "username")
     private WebElement usernameField;
 
-    @FindBy(id="password")
+    @FindBy(id = "password")
     private WebElement passwordField;
 
-    @FindBy(id="pwdLoginBtn")
+    @FindBy(id = "pwdLoginBtn")
     private WebElement loginButton;
 
-    @FindBy(id="block-ucll-menu-my-ucll")
+    @FindBy(id = "block-ucll-menu-my-ucll")
     private WebElement myUcllBlock;
 
     public LoginPage() {
-        getDriver().get(getPath()+"/Shibboleth.sso/Login?target=https%3A%2F%2Fintranet.ucll.be%2Fnl%3Fq%3Dshib_login%2Fhome");
+        getDriver().get(getPath() + "/Shibboleth.sso/Login?target=https%3A%2F%2Fintranet.ucll.be%2Fnl%3Fq%3Dshib_login%2Fhome");
         try (InputStream input = LoginPage.class.getClassLoader().getResourceAsStream("credentials.properties")) {
             Properties properties = new Properties();
             properties.load(input);

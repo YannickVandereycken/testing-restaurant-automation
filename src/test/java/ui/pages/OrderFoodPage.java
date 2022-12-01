@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class OrderFoodPage extends Page{
+public class OrderFoodPage extends Page {
 
     @FindAll(@FindBy(className = "vrtkcartquantitysp"))
     private List<WebElement> amount;
@@ -39,44 +39,59 @@ public class OrderFoodPage extends Page{
         wait.until(ExpectedConditions.visibilityOf(orderNowButton));
     }
 
-    public void selectFood(String food){
+    public void selectFood(String food) {
         String url;
-        switch (food){
-            case "Salmon Poke": url="?view=takeawayitem&takeaway_item=4";
-            break;
-            case "Tuna Poke": url="?view=takeawayitem&takeaway_item=5";
-            break;
-            case "Vegan Poke": url="?view=takeawayitem&takeaway_item=6";
-            break;
-            case "Chicken Poke": url="?view=takeawayitem&takeaway_item=7";
-            break;
-            case "Mango Poke": url="?view=takeawayitem&takeaway_item=8";
-            break;
-            case "Salmon Spicy Poke": url="?view=takeawayitem&takeaway_item=9";
-            break;
-            case "Chocolate": url="?view=takeawayitem&takeaway_item=10";
-            break;
-            case "Mango": url="?view=takeawayitem&takeaway_item=11";
-            break;
-            case "Coconut": url="?view=takeawayitem&takeaway_item=12";
-            break;
-            case "Still Water": url="?view=takeawayitem&takeaway_item=13";
-            break;
-            case "Sparkling Water": url="?view=takeawayitem&takeaway_item=14";
-            break;
-            case "Coca Cola": url="?view=takeawayitem&takeaway_item=15";
-            break;
-            case "Fanta": url="?view=takeawayitem&takeaway_item=16";
-            break;
-            case "Sprite": url="?view=takeawayitem&takeaway_item=17";
-            default: url="";
-            break;
+        switch (food) {
+            case "Salmon Poke":
+                url = "?view=takeawayitem&takeaway_item=4";
+                break;
+            case "Tuna Poke":
+                url = "?view=takeawayitem&takeaway_item=5";
+                break;
+            case "Vegan Poke":
+                url = "?view=takeawayitem&takeaway_item=6";
+                break;
+            case "Chicken Poke":
+                url = "?view=takeawayitem&takeaway_item=7";
+                break;
+            case "Mango Poke":
+                url = "?view=takeawayitem&takeaway_item=8";
+                break;
+            case "Salmon Spicy Poke":
+                url = "?view=takeawayitem&takeaway_item=9";
+                break;
+            case "Chocolate":
+                url = "?view=takeawayitem&takeaway_item=10";
+                break;
+            case "Mango":
+                url = "?view=takeawayitem&takeaway_item=11";
+                break;
+            case "Coconut":
+                url = "?view=takeawayitem&takeaway_item=12";
+                break;
+            case "Still Water":
+                url = "?view=takeawayitem&takeaway_item=13";
+                break;
+            case "Sparkling Water":
+                url = "?view=takeawayitem&takeaway_item=14";
+                break;
+            case "Coca Cola":
+                url = "?view=takeawayitem&takeaway_item=15";
+                break;
+            case "Fanta":
+                url = "?view=takeawayitem&takeaway_item=16";
+                break;
+            case "Sprite":
+                url = "?view=takeawayitem&takeaway_item=17";
+            default:
+                url = "";
+                break;
         }
-        getDriver().get(getPath()+"order-food-online/"+url);
+        getDriver().get(getPath() + "order-food-online/" + url);
     }
 
     public void addItem(int amount) {
-        for (int i=0;i<amount;i++){
+        for (int i = 0; i < amount; i++) {
             addItemButton.click();
 
             WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
@@ -87,26 +102,26 @@ public class OrderFoodPage extends Page{
         return amount;
     }
 
-    public boolean contains(String item){
-        for(WebElement w : content){
-            if(w.getText().equals(item))
+    public boolean contains(String item) {
+        for (WebElement w : content) {
+            if (w.getText().equals(item))
                 return true;
         }
         return false;
     }
 
-    public void emptyCart(){
+    public void emptyCart() {
         emptyCartButton.click();
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
     }
 
-    public boolean hasError(){
+    public boolean hasError() {
         return errorMessage.isDisplayed();
     }
 
-    public boolean amount(String a){
-        for(WebElement w : amount){
-            if(w.getText().equals(a))
+    public boolean amount(String a) {
+        for (WebElement w : amount) {
+            if (w.getText().equals(a))
                 return true;
         }
         return false;

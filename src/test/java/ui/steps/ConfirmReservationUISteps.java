@@ -18,7 +18,7 @@ public class ConfirmReservationUISteps {
 
     @Before
     public void setUp() {
-       // Page.initDriver();
+        Page.initDriver();
         confirmTablePage = PageFactory.initElements(Page.getDriver(), ConfirmTablePage.class);
     }
 
@@ -42,7 +42,6 @@ public class ConfirmReservationUISteps {
     @Then("the reservation should be made")
     public void the_reservation_should_be_made() {
         assertTrue(confirmTablePage.isReservationConfirmed());
-
     }
 
     @Given("Jef has not accepted the terms and conditions")
@@ -69,6 +68,7 @@ public class ConfirmReservationUISteps {
         confirmTablePage.fillInFirstAndLastName("", "Jefferson");
         confirmTablePage.acceptTerms();
     }
+
     @Then("a message should be given that the first name needs to be provided before making a reservation")
     public void a_message_should_be_given_that_the_first_name_needs_to_be_provided_before_making_a_reservation() {
         assertTrue(confirmTablePage.isErrorDisplayed());
@@ -87,9 +87,9 @@ public class ConfirmReservationUISteps {
         confirmTablePage.fillInFirstAndLastName("Jef", "");
         confirmTablePage.acceptTerms();
     }
+
     @Then("a message should be given that the last name needs to be provided before making a reservation")
     public void a_message_should_be_given_that_the_last_name_needs_to_be_provided_before_making_a_reservation() {
         assertTrue(confirmTablePage.isErrorDisplayed());
     }
-
 }
