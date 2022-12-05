@@ -4,7 +4,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Before;
-import org.junit.Assert.*;
 import org.openqa.selenium.support.PageFactory;
 import ui.pages.ChooseRoomePage;
 import ui.pages.Page;
