@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.Duration;
 import java.util.Properties;
 
 public class LoginPage extends Page {
@@ -44,7 +45,7 @@ public class LoginPage extends Page {
         usernameField.sendKeys(username);
         passwordField.sendKeys(password);
         loginButton.click();
-        WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(myUcllBlock));
     }
 }
