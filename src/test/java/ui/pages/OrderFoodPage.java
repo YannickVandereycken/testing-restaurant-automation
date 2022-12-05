@@ -33,6 +33,15 @@ public class OrderFoodPage extends Page {
     @FindBy(className = "toast-message-content")
     private WebElement errorMessage;
 
+    @FindBy(id = "vrtk-price-box")
+    private WebElement itemPrice;
+
+    @FindBy(name = "tk-notes-info")
+    private WebElement notesBox;
+
+    @FindAll(@FindBy(className = "vrtk-confcart-notes"))
+    private List<WebElement> itemNotes;
+
     public void open() {
         getDriver().get(getPath() + "/order-food-online");
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
@@ -125,5 +134,35 @@ public class OrderFoodPage extends Page {
                 return true;
         }
         return false;
+    }
+
+    public double calculateItemPrice(){
+        String priceString = itemPrice.getText();
+        String[] newString = priceString.split(" ");
+        double result= Double.parseDouble(newString[1]);
+        return result;
+    }
+
+    public double calculateTotalPrice(){
+        String totalString = totalPrice.getText();
+        String[] newString = totalString.split(" ");
+        double result = Double.parseDouble(newString[1]);
+        return result;
+    }
+
+    public void addNote(String s){
+        notesBox.sendKeys(s);
+    }
+
+    public boolean containsNote(String s){
+        return itemNotes.contains(s);
+    }
+
+    public boolean noNote(){
+        return itemNotes.isEmpty();
+    }
+
+    public void confirmOrder(){
+        orderNowButton.click();
     }
 }
