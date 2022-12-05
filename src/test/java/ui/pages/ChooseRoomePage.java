@@ -59,9 +59,11 @@ public class ChooseRoomePage extends Page {
         dateField.clear();
         dateField.sendKeys(mm + "/" + dd + "/" + yyyy);
     }
-    public void fillInAantal(String aantal){
+    public void fillInAantal(Integer aantal){
+        String out = "";
+        out += aantal;
         aantalPersonenInput.clear();
-        dateField.sendKeys(aantal);
+        dateField.sendKeys(out);
     }
 
 
