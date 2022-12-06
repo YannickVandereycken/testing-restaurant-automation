@@ -40,11 +40,15 @@ public class ChooseRoomUISteps {
 
     @When("Jef tries to reserve a table in the “Kleine zaal”")
     public void jef_tries_to_reserve_a_table_in_the_kleine_zaal() {
+        if (chooseRoomePage.selectRoomDropdownContainsOption("Kleine zaal")){
+            jef_has_chosen_to_make_a_reservation_for(2);
+
+        }
     }
 
     @Then("Jef should only be able to make a reservation in “Middelgrote zaal”, “Lege kamer” or “Grote zaal”")
     public void jef_should_only_be_able_to_make_a_reservation_in_middelgrote_zaal_lege_kamer_or_grote_zaal() {
-        assertTrue(chooseRoomePage.selectRoomDropdownContainsOption("Grote zaal") && chooseRoomePage.selectRoomDropdownContainsOption("Lege kamer") && chooseRoomePage.selectRoomDropdownContainsOption("Middelgrote zaal"));
+        assertTrue(!chooseRoomePage.selectRoomDropdownContainsOption("Kleine zaal"));
     }
 
     @When("Jef reserves a table in the “middle-sized room”")
