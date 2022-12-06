@@ -36,11 +36,14 @@ public class OrderFoodPage extends Page {
     @FindBy(id = "vrtk-price-box")
     private WebElement itemPrice;
 
-    @FindBy(name = "tk-notes-info")
+    @FindBy(css = "textarea")
     private WebElement notesBox;
 
-    @FindAll(@FindBy(className = "vrtk-confcart-notes"))
-    private List<WebElement> itemNotes;
+    @FindBy(name = "notes")
+    private WebElement itemNotes;
+
+    @FindBy(id="vrtk-aditem-form")
+    private WebElement addForm;
 
     public void open() {
         getDriver().get(getPath() + "/order-food-online");
@@ -104,6 +107,7 @@ public class OrderFoodPage extends Page {
             addItemButton.click();
 
             WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+            WebElement element = wait.until(ExpectedConditions.elementToBeClickable(addItemButton));
         }
     }
 
@@ -139,27 +143,39 @@ public class OrderFoodPage extends Page {
     public double calculateItemPrice(){
         String priceString = itemPrice.getText();
         String[] newString = priceString.split(" ");
-        double result= Double.parseDouble(newString[1]);
+        String[] doubleString = newString[1].split(",");
+        double result= Double.parseDouble(String.join(".", doubleString));
         return result;
     }
 
     public double calculateTotalPrice(){
         String totalString = totalPrice.getText();
         String[] newString = totalString.split(" ");
-        double result = Double.parseDouble(newString[1]);
+        String[] doubleString = newString[1].split(",");
+        double result = Double.parseDouble(String.join(".", doubleString));
         return result;
     }
 
     public void addNote(String s){
+        notesBox.click();
         notesBox.sendKeys(s);
     }
 
     public boolean containsNote(String s){
-        return itemNotes.contains(s);
+        for(WebElement w : content){
+            w.click();
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+            WebElement element = wait.until(ExpectedConditions.visibilityOf(addForm));
+            if(itemNotes.getText().equals(s))
+                return true;
+            else
+                this.open();
+        }
+        return false;
     }
 
     public boolean noNote(){
-        return itemNotes.isEmpty();
+        return itemNotes.getText().isEmpty();
     }
 
     public void confirmOrder(){
