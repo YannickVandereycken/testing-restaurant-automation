@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -34,6 +35,9 @@ public class ChooseRoomePage extends Page {
     @FindBy(id = "vrcfinput13")
     private WebElement acceptTermsCheckbox;
 
+    @FindBy(id = "vrhour")
+    private WebElement selectTimeDropdown;
+
     @FindBy(id = "vrconfcontinuebutton")
     private WebElement confirmButton;
 
@@ -42,6 +46,9 @@ public class ChooseRoomePage extends Page {
 
     @FindBy(className = "vrordercancbutton")
     private WebElement cancelReservationButton;
+
+    @FindBy(className = "vrsteptitle")
+    private WebElement touch;
 
     @FindBy(id = "vrroomselect")
     private WebElement selectRoomDropdown;
@@ -58,12 +65,25 @@ public class ChooseRoomePage extends Page {
     public void fillInDate(String yyyy, String mm, String dd) {
         dateField.clear();
         dateField.sendKeys(mm + "/" + dd + "/" + yyyy);
+        touch.click();
+
     }
     public void fillInAantal(Integer aantal){
         String out = "";
-        out += aantal;
-        aantalPersonenInput.clear();
-        dateField.sendKeys(out);
+        out += aantal +" people";
+        aantalPersonenInput.click();
+        aantalPersonenInput.findElement(By.xpath(String.format("//option[contains(text(),\"%s\")]", out))).click();
+
+    }
+
+    public void fillInHour(String uur,String minuut) {
+        String min = minuut;
+        Select se = new Select(selectTimeDropdown.findElement(By.xpath("//*[@id='vrhour']")));
+        if(minuut == "0") min = "00";
+        String time = uur + ":" + min;
+        selectTimeDropdown.findElement(By.xpath(String.format("//option[contains(text(),\"%s\")]", time))).click();
+        //se.selectByVisibleText(time);
+        // continueButton.click();
     }
 
 
@@ -78,11 +98,9 @@ public class ChooseRoomePage extends Page {
 
     public void findTable() {
         findATableButton.click();
-
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(selectRoomButton));
         selectRoomButton.click();
-
         wait.until(ExpectedConditions.visibilityOf(continueButton));
     }
 
