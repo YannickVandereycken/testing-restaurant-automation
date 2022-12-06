@@ -12,10 +12,7 @@ public abstract class Page {
 
     public static void initDriver() {
         WebDriverManager.chromedriver().setup();
-        if (driver == null) {
-//            ChromeOptions chromeOptions = new ChromeOptions();
-//            chromeOptions.addArguments("--lang=en-GB");
-//            driver = new ChromeDriver(chromeOptions);
+        if(driver == null) {
             driver = new ChromeDriver();
         }
     }
