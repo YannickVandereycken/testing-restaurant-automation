@@ -50,7 +50,7 @@ public class ChooseRoomePage extends Page {
     private WebElement okLink;
 
     public void open() {
-        getDriver().get(getPath() + "/book-a-table");
+        getDriver().get(getPath() + "book-a-table");
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(findATableButton));
     }
