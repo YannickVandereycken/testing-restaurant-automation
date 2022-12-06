@@ -42,6 +42,7 @@ public class ConfirmReservationUISteps {
     @Then("the reservation should be made")
     public void the_reservation_should_be_made() {
         assertTrue(confirmTablePage.isReservationConfirmed());
+        confirmTablePage.cancelReservation();
     }
 
     @Given("Jef has not accepted the terms and conditions")
