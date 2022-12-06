@@ -42,7 +42,7 @@ public class OrderFoodPage extends Page {
     @FindBy(name = "notes")
     private WebElement itemNotes;
 
-    @FindBy(id="vrtk-aditem-form")
+    @FindBy(id="vrtk-additem-form")
     private WebElement addForm;
 
     public void open() {
