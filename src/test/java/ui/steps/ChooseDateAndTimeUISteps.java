@@ -43,7 +43,7 @@ public class ChooseDateAndTimeUISteps {
         LocalDate date2 = LocalDate.of(jaar,maand,dag);
         long days = DAYS.between(date2, LocalDate.now());
         //adds the number of days to the examinationDate parameter, the ‘future date’
-        LocalDate date = date2.plusDays(days);
+        LocalDate date = date2.plusDays(days + 1);
         bookTablePage.open();
         bookTablePage.fillInDate(String.valueOf(date.getYear()), String.valueOf(date.getMonthValue()), String.valueOf(date.getDayOfMonth()));
         bookTablePage.fillInHour(String.valueOf(uur), String.valueOf(minuut));

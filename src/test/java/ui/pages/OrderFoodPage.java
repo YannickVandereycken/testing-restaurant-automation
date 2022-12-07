@@ -1,5 +1,6 @@
 package ui.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +31,10 @@ public class OrderFoodPage extends Page {
     @FindBy(className = "vrtkcartemptybutton")
     private WebElement emptyCartButton;
 
+    @FindBy(className = "vrtk-additem-notes-box")
+    private WebElement notesTextBox;
+
+
     @FindBy(className = "toast-message-content")
     private WebElement errorMessage;
 
@@ -44,6 +49,14 @@ public class OrderFoodPage extends Page {
 
     @FindBy(id="vrtk-additem-form")
     private WebElement addForm;
+
+
+    @FindBy(className="vrtkcartleftrow")
+    private WebElement firstItem;
+
+    @FindBy(className="vrtk-additem-notes-field")
+    private WebElement testNotes;
+
 
     public void open() {
         getDriver().get(getPath() + "/order-food-online");
@@ -161,9 +174,20 @@ public class OrderFoodPage extends Page {
         notesBox.sendKeys(s);
     }
 
+    public String getCucumberNote(String testval){
+        firstItem.findElement(By.xpath(String.format("//*[@class='vrtkcartleftrow']"))).click();
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(notesTextBox));
+        if (testNotes.findElement(By.xpath("//*[text()='"+testval+"']")).isDisplayed()) {
+            return "True";
+        }else {
+            return "False";
+        }
+    }
+
     public boolean containsNote(String s){
+        firstItem.findElement(By.xpath(String.format("//*[@class='vrtkcartleftrow']"))).click();
         for(WebElement w : content){
-            w.click();
             WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
             WebElement element = wait.until(ExpectedConditions.visibilityOf(addForm));
             if(itemNotes.getText().equals(s))
