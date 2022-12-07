@@ -24,7 +24,7 @@ public class AddToCartUISteps {
 
     @After
     public void clean() {
-        //Page.quitDriver();
+//        Page.quitDriver();
     }
 
     @Given("Jef has {int} “Fanta” in his cart")
@@ -83,8 +83,9 @@ public class AddToCartUISteps {
         // Write code here that turns the phrase above into concrete actions
         orderFoodPage.open();
         orderFoodPage.selectFood("Fanta");
-        assertEquals(orderFoodPage.calculateItemPrice(), price/10, 0.00);
+        assertEquals(orderFoodPage.calculateItemPrice(), price / 10, 0.00);
     }
+
     @When("Jef chooses to add {int} “Fanta” to his cart")
     public void jef_chooses_to_add_fanta_to_his_cart(Integer amount) {
         // Write code here that turns the phrase above into concrete actions
@@ -92,11 +93,12 @@ public class AddToCartUISteps {
         orderFoodPage.selectFood("Fanta");
         orderFoodPage.addItem(amount);
     }
+
     @Then("the total price of €{double} should be given")
     public void the_total_price_of_€_should_be_given(Double price) {
         // Write code here that turns the phrase above into concrete actions
         orderFoodPage.open();
-        assertEquals(orderFoodPage.calculateTotalPrice(), price/10, 0.00);
+        assertEquals(orderFoodPage.calculateTotalPrice(), price / 10, 0.00);
     }
 
     @Given("Jef has chosen a “Tuna Poke”")
@@ -105,25 +107,29 @@ public class AddToCartUISteps {
         orderFoodPage.open();
         orderFoodPage.selectFood("Tuna Poke");
     }
+
     @When("Jef adds the note “without cucumber”")
     public void jef_adds_the_note_without_cucumber() {
         // Write code here that turns the phrase above into concrete actions
         orderFoodPage.addNote("without cucumber");
     }
+
     @When("Jef adds {int} “Tuna Poke” to his cart")
     public void jef_adds_tuna_poke_to_his_cart(Integer amount) {
         // Write code here that turns the phrase above into concrete actions
         orderFoodPage.addItem(amount);
     }
+
     @Then("{int} “Tuna Poke” should be added to his cart")
     public void tuna_poke_should_be_added_to_his_cart(Integer amount) {
         // Write code here that turns the phrase above into concrete actions
-        assertTrue(orderFoodPage.amount("x"+amount));
+        assertTrue(orderFoodPage.amount("x" + amount));
     }
+
     @Then("it should include the note “without cucumber”")
     public void it_should_include_the_note_without_cucumber() {
         // Write code here that turns the phrase above into concrete actions
-        assertTrue(orderFoodPage.getCucumberNote("without cucumber"),true);
+        assertTrue(orderFoodPage.getCucumberNote("without cucumber"), true);
     }
 
     @When("Jef adds “Tuna Poke” to his cart")
@@ -131,6 +137,7 @@ public class AddToCartUISteps {
         // Write code here that turns the phrase above into concrete actions
         orderFoodPage.addItem(1);
     }
+
     @When("he did not add a note")
     public void he_did_not_add_a_note() {
     }

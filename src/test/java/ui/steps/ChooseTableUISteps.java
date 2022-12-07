@@ -106,6 +106,7 @@ public class ChooseTableUISteps {
         bookTablePage.fillInDetails("Jef", "Jefferson");
         bookTablePage.confirmReservation();
     }
+
     @Then("Jef should be able to make a reservation in the middle-sized room")
     public void jef_should_be_able_to_make_a_reservation_in_the_middle_sized_room() {
         assertTrue(bookTablePage.isReservationConfirmed());
@@ -115,6 +116,7 @@ public class ChooseTableUISteps {
     @When("Jef tries to reserve a table in the “middle-sized room”")
     public void jef_tries_to_reserve_a_table_in_the_middle_sized_room() {
     }
+
     @Then("Jef should only be able to make a reservation in the “Lege kamer” or “Grote zaal”")
     public void jef_should_only_be_able_to_make_a_reservation_in_the_lege_kamer_or_grote_zaal() {
         assertTrue(bookTablePage.selectRoomDropdownContainsOption("Grote zaal") && bookTablePage.selectRoomDropdownContainsOption("Lege kamer") && !bookTablePage.selectRoomDropdownContainsOption("Middelgrote zaal"));
@@ -126,6 +128,7 @@ public class ChooseTableUISteps {
         bookTablePage.fillInDetails("Jef", "Jefferson");
         bookTablePage.confirmReservation();
     }
+
     @Then("Jef should be able to make a reservation in the “big room”")
     public void jef_should_be_able_to_make_a_reservation_in_the_big_room() {
         assertTrue(bookTablePage.isReservationConfirmed());
@@ -141,6 +144,7 @@ public class ChooseTableUISteps {
         bookTablePage.fillInDetails("Jef", "Jefferson");
         bookTablePage.confirmReservation();
     }
+
     @Then("Jef should be able to book a reservation for the “small room”")
     public void jef_should_be_able_to_book_a_reservation_for_the_small_room() {
         assertTrue(bookTablePage.isReservationConfirmed());

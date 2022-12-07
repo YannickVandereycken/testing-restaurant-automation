@@ -9,6 +9,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.support.PageFactory;
 import ui.pages.BookTablePage;
 import ui.pages.Page;
+
 import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.time.DayOfWeek;
@@ -40,7 +41,7 @@ public class ChooseDateAndTimeUISteps {
 
     @When("Jef makes a reservation for {}\\/{}\\/{} {int}:{int}")
     public void jef_makes_a_reservation_for(Integer dag, Integer maand, Integer jaar, Integer uur, Integer minuut) {
-        LocalDate date2 = LocalDate.of(jaar,maand,dag);
+        LocalDate date2 = LocalDate.of(jaar, maand, dag);
         long days = DAYS.between(date2, LocalDate.now());
         LocalDate date = date2.plusDays(days + 1);
         bookTablePage.open();
